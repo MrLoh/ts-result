@@ -56,23 +56,23 @@ export const err: {
    * @param args - the arguments to pass to the error class constructor
    * @returns the err result
    */
-  <E extends Error, P extends unknown[]>(errClass: new (...args: P) => E, ...args: P): ErrResult<E>;
+  <E extends Error, P extends unknown[]>(ErrorClass: new (...args: P) => E, ...args: P): ErrResult<E>;
   // eslint-disable-next-line jsdoc/require-jsdoc -- definitions for polymorphic function are above
 } = (
-  stringOrErrOrErrClass: string | Error | (new (...args: unknown[]) => Error),
+  stringOrErrorOrErrorClass: string | Error | (new (...args: unknown[]) => Error),
   ...args: unknown[]
 ) => {
-  if (typeof stringOrErrOrErrClass === 'string') {
-    return { ok: false, val: undefined, err: new Error(stringOrErrOrErrClass) };
+  if (typeof stringOrErrorOrErrorClass === 'string') {
+    return { ok: false, val: undefined, err: new Error(stringOrErrorOrErrorClass) };
   }
-  if (stringOrErrOrErrClass instanceof Error) {
-    return { ok: false, val: undefined, err: stringOrErrOrErrClass };
+  if (stringOrErrorOrErrorClass instanceof Error) {
+    return { ok: false, val: undefined, err: stringOrErrorOrErrorClass };
   }
   if (
-    typeof stringOrErrOrErrClass === 'function' &&
-    stringOrErrOrErrClass.prototype instanceof Error
+    typeof stringOrErrorOrErrorClass === 'function' &&
+    stringOrErrorOrErrorClass.prototype instanceof Error
   ) {
-    return { ok: false, val: undefined, err: new stringOrErrOrErrClass(...args) };
+    return { ok: false, val: undefined, err: new stringOrErrorOrErrorClass(...args) };
   }
   throw new Error('err expects a string, Error, or Error class as an argument');
 };

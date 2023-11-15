@@ -16,6 +16,15 @@
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
   },
+  "prettier": {
+    "printWidth": 100,
+    "arrowParens": "always",
+    "semi": true,
+    "tabs": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 2
+  },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
